@@ -1,0 +1,1478 @@
+{
+	"info": {
+		"_postman_id": "bec5d24e-fffd-4f63-9cbf-56db64aa6d50",
+		"name": "Devchallenge12",
+		"description": "Requests for DevChallenge12",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Steps 1-4",
+			"description": "",
+			"item": [
+				{
+					"name": "Add a new Pet to the store",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2b001fec-8b9f-4d0b-a451-7b24f77633ff",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Successful request\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response data are valid\", function () {",
+									"    var rsp = pm.response.json();",
+									"    pm.expect(rsp.id).to.eql(+(pm.variables.get(\"petID\")));",
+									"    pm.expect(rsp.name).to.eql(\"Bobby\");",
+									"    pm.expect(rsp.category.id).to.eql(1);",
+									"    pm.expect(rsp.tags[1].name).to.eql(\"labrador\");",
+									"    pm.expect(rsp.status).to.eql(\"pending\");",
+									"});",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": {{petID}},\r\n  \"category\": {\r\n    \"id\": 1,\r\n    \"name\": \"Dogs\"\r\n  },\r\n  \"name\": \"Bobby\",\r\n  \"photoUrls\": [\r\n    \"http://www.zooclub.com.ua/img/katalog/17/77/136_27.jpg\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 1,\r\n      \"name\": \"dog\"\r\n    },\r\n    {\r\n      \"id\": 4,\r\n      \"name\": \"labrador\"\r\n    }\r\n  ],\r\n  \"status\": \"pending\"\r\n}"
+						},
+						"url": {
+							"raw": "{{site}}/pet",
+							"host": [
+								"{{site}}"
+							],
+							"path": [
+								"pet"
+							]
+						},
+						"description": "Authorization"
+					},
+					"response": []
+				},
+				{
+					"name": "Check a Pet was added",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4c4a2b6d-68d2-4578-b568-ebba087e0e7e",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Successful request\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response data are valid\", function () {",
+									"    var rsp = pm.response.json();",
+									"    pm.expect(rsp.id).to.eql(+(pm.variables.get(\"petID\")));",
+									"    pm.expect(rsp.name).to.eql(\"Bobby\");",
+									"    pm.expect(rsp.category.id).to.eql(1);",
+									"    pm.expect(rsp.tags[1].name).to.eql(\"labrador\");",
+									"    pm.expect(rsp.status).to.eql(\"pending\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"category\": {\r\n    \"id\": 1,\r\n    \"name\": \"MyDog\"\r\n  },\r\n  \"name\": \"Bobby\",\r\n  \"photoUrls\": [\r\n    \"string\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 1,\r\n      \"name\": \"labrador\"\r\n    }\r\n  ],\r\n  \"status\": \"pending\"\r\n}"
+						},
+						"url": {
+							"raw": "{{site}}/pet/{{petID}}",
+							"host": [
+								"{{site}}"
+							],
+							"path": [
+								"pet",
+								"{{petID}}"
+							]
+						},
+						"description": "Authorization"
+					},
+					"response": []
+				},
+				{
+					"name": "Change the name of Pet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c1c81fc5-8a0a-4a80-b9f3-cff8ac074e5a",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Successful request\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response data are valid\", function () {",
+									"    var rsp = pm.response.json();",
+									"    pm.expect(rsp.name).to.eql(\"Sammy\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": {{petID}},\r\n  \"category\": {\r\n    \"id\": 1,\r\n    \"name\": \"Dogs\"\r\n  },\r\n  \"name\": \"Sammy\",\r\n  \"photoUrls\": [\r\n    \"http://www.zooclub.com.ua/img/katalog/17/77/136_27.jpg\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 1,\r\n      \"name\": \"dog\"\r\n    },\r\n    {\r\n      \"id\": 4,\r\n      \"name\": \"labrador\"\r\n    }\r\n  ],\r\n  \"status\": \"pending\"\r\n}"
+						},
+						"url": {
+							"raw": "{{site}}/pet",
+							"host": [
+								"{{site}}"
+							],
+							"path": [
+								"pet"
+							]
+						},
+						"description": "Authorization"
+					},
+					"response": []
+				},
+				{
+					"name": "Check a new name of Pet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7f90caf4-1553-403a-afec-d9975f8066a6",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Successful request\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response data are valid\", function () {",
+									"    var rsp = pm.response.json();",
+									"    pm.expect(rsp.name).to.eql(\"Sammy\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": {{petID}},\r\n  \"category\": {\r\n    \"id\": 1,\r\n    \"name\": \"Dogs\"\r\n  },\r\n  \"name\": \"Sammy\",\r\n  \"photoUrls\": [\r\n    \"http://www.zooclub.com.ua/img/katalog/17/77/136_27.jpg\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 1,\r\n      \"name\": \"dog\"\r\n    },\r\n    {\r\n      \"id\": 4,\r\n      \"name\": \"labrador\"\r\n    }\r\n  ],\r\n  \"status\": \"pending\"\r\n}"
+						},
+						"url": {
+							"raw": "{{site}}/pet/{{petID}}",
+							"host": [
+								"{{site}}"
+							],
+							"path": [
+								"pet",
+								"{{petID}}"
+							]
+						},
+						"description": "Authorization"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Pet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "23504886-7f8e-4f68-aba0-42bd6f73c94f",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Successful request\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api_key",
+								"value": "special-key"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{site}}/pet/{{petID}}",
+							"host": [
+								"{{site}}"
+							],
+							"path": [
+								"pet",
+								"{{petID}}"
+							]
+						},
+						"description": "Authorization"
+					},
+					"response": []
+				},
+				{
+					"name": "Check a Pet was deleted",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "90cdd7df-8bdd-4439-8096-1dce9147872a",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Successful request\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Check server error response\", function () {",
+									"    var rsp = pm.response.json();",
+									"    pm.expect(rsp).to.have.all.keys(\"type\", \"string\", \"message\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api_key",
+								"value": "special-key"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{site}}/pet/{{petID}}",
+							"host": [
+								"{{site}}"
+							],
+							"path": [
+								"pet",
+								"{{petID}}"
+							]
+						},
+						"description": "Authorization"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Step 5 Tests for /Pet",
+			"description": "",
+			"item": [
+				{
+					"name": "Add a new Pet with invalid body in the request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1e91e827-1d7a-4bb3-8b2f-618303833d58",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Bad request\", function () {",
+									"    pm.response.to.have.status(405);",
+									"});",
+									"",
+									"pm.test(\"Check server error response\", function () {",
+									"    var rsp = pm.response.json();",
+									"    pm.expect(rsp).to.have.all.keys(\"type\", \"string\", \"message\");",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ololo\": \"trololo\"\r\n}"
+						},
+						"url": {
+							"raw": "{{site}}/pet",
+							"host": [
+								"{{site}}"
+							],
+							"path": [
+								"pet"
+							]
+						},
+						"description": "Authorization"
+					},
+					"response": []
+				},
+				{
+					"name": "Add a new Pet with valid id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "060a5ac0-2902-4fd7-923f-b97434e712b1",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Successful request\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response data are valid\", function () {",
+									"    var rsp = pm.response.json();",
+									"    pm.expect(rsp.id).to.eql(+(pm.variables.get(\"sameID\")));",
+									"    pm.expect(rsp.name).to.eql(\"Bobby\");",
+									"    pm.expect(rsp.category.id).to.eql(1);",
+									"    pm.expect(rsp.tags[1].name).to.eql(\"labrador\");",
+									"    pm.expect(rsp.status).to.eql(\"pending\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": {{sameID}},\r\n  \"category\": {\r\n    \"id\": 1,\r\n    \"name\": \"Dogs\"\r\n  },\r\n  \"name\": \"Bobby\",\r\n  \"photoUrls\": [\r\n    \"http://www.zooclub.com.ua/img/katalog/17/77/136_27.jpg\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 1,\r\n      \"name\": \"dog\"\r\n    },\r\n    {\r\n      \"id\": 4,\r\n      \"name\": \"labrador\"\r\n    }\r\n  ],\r\n  \"status\": \"pending\"\r\n}"
+						},
+						"url": {
+							"raw": "{{site}}/pet",
+							"host": [
+								"{{site}}"
+							],
+							"path": [
+								"pet"
+							]
+						},
+						"description": "Authorization"
+					},
+					"response": []
+				},
+				{
+					"name": "Add a new Pet with a same id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "11d22235-1259-4019-83ab-a0b22c81ec0b",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Bad request\", function () {",
+									"    pm.response.to.have.status(405);",
+									"});",
+									"",
+									"pm.test(\"Check server error response\", function () {",
+									"    var rsp = pm.response.json();",
+									"    pm.expect(rsp).to.have.all.keys(\"type\", \"string\", \"message\");",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": {{sameID}},\r\n  \"category\": {\r\n    \"id\": 2,\r\n    \"name\": \"Cats\"\r\n  },\r\n  \"name\": \"Murka\",\r\n  \"photoUrls\": [\r\n    \"\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 2,\r\n      \"name\": \"cat\"\r\n    },\r\n    {\r\n      \"id\": 22,\r\n      \"name\": \"siamese\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}"
+						},
+						"url": {
+							"raw": "{{site}}/pet",
+							"host": [
+								"{{site}}"
+							],
+							"path": [
+								"pet"
+							]
+						},
+						"description": "Authorization"
+					},
+					"response": []
+				},
+				{
+					"name": "Find a Pet with invalid id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cc1985c1-f068-480b-bb85-1ad568b8eebf",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Bad request\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Check server error response\", function () {",
+									"    var rsp = pm.response.json();",
+									"    pm.expect(rsp).to.have.all.keys(\"type\", \"string\", \"message\");",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ololo\": \"trololo\"\r\n}"
+						},
+						"url": {
+							"raw": "{{site}}/pet/{{invID}}",
+							"host": [
+								"{{site}}"
+							],
+							"path": [
+								"pet",
+								"{{invID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change a Pet with invalid id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "93408393-e8f3-4f94-815a-daa4722ad41a",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Bad request\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Check server error response\", function () {",
+									"    var rsp = pm.response.json();",
+									"    pm.expect(rsp).to.have.all.keys(\"type\", \"string\", \"message\");",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": {{invID}},\r\n  \"category\": {\r\n    \"id\": 1,\r\n    \"name\": \"cat\"\r\n  },\r\n  \"name\": \"Masya\",\r\n  \"photoUrls\": [\r\n    \"string\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 3,\r\n      \"name\": \"pretty\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}"
+						},
+						"url": {
+							"raw": "{{site}}/pet",
+							"host": [
+								"{{site}}"
+							],
+							"path": [
+								"pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Pet with invalid id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "49de9a77-2a4e-47af-b8da-485b32efbb3c",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Bad request\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Check server error response\", function () {",
+									"    var rsp = pm.response.json();",
+									"    pm.expect(rsp).to.have.all.keys(\"type\", \"string\", \"message\");",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "api_key",
+								"value": "special-key"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{site}}/pet/{{invID}}",
+							"host": [
+								"{{site}}"
+							],
+							"path": [
+								"pet",
+								"{{invID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find a Pets by valid status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2addcfb4-5bb8-4a2c-a99a-2394e7f4bff2",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Successful request\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response is array\", function () {",
+									"    var rsp = pm.response.json();",
+									"    pm.expect(rsp).to.be.an('array');",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{site}}/pet/findByStatus?status={{valStatus}}",
+							"host": [
+								"{{site}}"
+							],
+							"path": [
+								"pet",
+								"findByStatus"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "{{valStatus}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find a Pets by invalid status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "df43c833-7349-40be-bf3f-21ecb2d84f86",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Bad request\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Check server error response\", function () {",
+									"    var rsp = pm.response.json();",
+									"    pm.expect(rsp).to.have.all.keys(\"type\", \"string\", \"message\");",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{site}}/pet/findByStatus?status={{invStatus}}",
+							"host": [
+								"{{site}}"
+							],
+							"path": [
+								"pet",
+								"findByStatus"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "{{invStatus}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Pet name and status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "09296e17-1187-45af-a679-5cf0d3befa77",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Successful request\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Masya",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "sold",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{site}}/pet/{{sameID}}",
+							"host": [
+								"{{site}}"
+							],
+							"path": [
+								"pet",
+								"{{sameID}}"
+							]
+						},
+						"description": "Authorization"
+					},
+					"response": []
+				},
+				{
+					"name": "Check an update name and status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c76b3c7c-f9ed-4c61-bf4b-36870d10346b",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Successful request\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Name and status are updates\", function () {",
+									"    var rsp = pm.response.json();",
+									"    pm.expect(rsp.id).to.eql(+(pm.variables.get(\"sameID\")));",
+									"    pm.expect(rsp.name).to.eql(\"Masya\");",
+									"    pm.expect(rsp.status).to.eql(\"sold\");",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Masya",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "sold",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{site}}/pet/{{sameID}}",
+							"host": [
+								"{{site}}"
+							],
+							"path": [
+								"pet",
+								"{{sameID}}"
+							]
+						},
+						"description": "Authorization"
+					},
+					"response": []
+				},
+				{
+					"name": "Upload a pet photo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "09296e17-1187-45af-a679-5cf0d3befa77",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Successful request\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"description": "",
+									"type": "file"
+								},
+								{
+									"key": "additionalMetadata",
+									"value": "cat",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{site}}/pet/{{sameID}}/uploadImage",
+							"host": [
+								"{{site}}"
+							],
+							"path": [
+								"pet",
+								"{{sameID}}",
+								"uploadImage"
+							]
+						},
+						"description": "Authorization"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tests for /Store",
+			"description": "",
+			"item": [
+				{
+					"name": "Check pet inventories by status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "35b1a24d-d4d9-4953-a7d7-e2eeb0c0b02a",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Successful request\", function() {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Check pet inventories available in the store\", function () {",
+									"    var rsp =  pm.response.json();",
+									"    pm.expect(rsp).to.have.any.keys('available', 'pending', 'sold');",
+									"});",
+									"",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"type": "any"
+								},
+								{
+									"key": "tokenType",
+									"type": "any"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{site}}/store/inventory",
+							"host": [
+								"{{site}}"
+							],
+							"path": [
+								"store",
+								"inventory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add a new order with id 1-10",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "37b3728a-eccf-4277-85e8-3affd3dcf650",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Successful request\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response data are valid\", function () {",
+									"    var rsp = pm.response.json();",
+									"    pm.expect(rsp.id).to.eql(+(pm.variables.get(\"orderID\")));",
+									"    pm.expect(rsp.petId).to.eql(+(pm.variables.get(\"petID\")));",
+									"    pm.expect(rsp.quantity).to.eql(1);",
+									"    pm.expect(rsp.status).to.eql(\"placed\");",
+									"    pm.expect(rsp.complete).to.eql(false);",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"type": "any"
+								},
+								{
+									"key": "tokenType",
+									"type": "any"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": {{orderID}},\r\n  \"petId\": {{petID}},\r\n  \"quantity\": 1,\r\n  \"shipDate\": \"2018-05-11T07:55:16.503Z\",\r\n  \"status\": \"placed\",\r\n  \"complete\": false\r\n}"
+						},
+						"url": {
+							"raw": "{{site}}/store/order",
+							"host": [
+								"{{site}}"
+							],
+							"path": [
+								"store",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check a new order with id 1-10 was added",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "37b3728a-eccf-4277-85e8-3affd3dcf650",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Successful request\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response data are valid\", function () {",
+									"    var rsp = pm.response.json();",
+									"    pm.expect(rsp.id).to.eql(+(pm.variables.get(\"orderID\")));",
+									"    pm.expect(rsp.petId).to.eql(+(pm.variables.get(\"petID\")));",
+									"    pm.expect(rsp.quantity).to.eql(1);",
+									"    pm.expect(rsp.status).to.eql(\"placed\");",
+									"    pm.expect(rsp.complete).to.eql(false);",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"type": "any"
+								},
+								{
+									"key": "tokenType",
+									"type": "any"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": {{orderID}},\r\n  \"petId\": {{petID}},\r\n  \"quantity\": 1,\r\n  \"shipDate\": \"2018-05-11T07:55:16.503Z\",\r\n  \"status\": \"placed\",\r\n  \"complete\": false\r\n}"
+						},
+						"url": {
+							"raw": "{{site}}/store/order/{{orderID}}",
+							"host": [
+								"{{site}}"
+							],
+							"path": [
+								"store",
+								"order",
+								"{{orderID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete order with valid id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "76dd5b04-91d3-4d99-aad9-f91bf0188864",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Sucessful request\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Check server error response\", function () {",
+									"    var rsp = pm.response.json();",
+									"    pm.expect(rsp).to.have.all.keys(\"type\", \"string\", \"message\");",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"type": "any"
+								},
+								{
+									"key": "tokenType",
+									"type": "any"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{site}}/store/order/{{orderID}}",
+							"host": [
+								"{{site}}"
+							],
+							"path": [
+								"store",
+								"order",
+								"{{orderID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add a new order with id > 10",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ef49ea75-0b39-4cc4-a5e4-7a2d50bb412d",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Successful request\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response data are valid\", function () {",
+									"    var rsp = pm.response.json();",
+									"    pm.expect(rsp.id).to.eql(11);",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"type": "any"
+								},
+								{
+									"key": "tokenType",
+									"type": "any"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": {{invorderID}},\r\n  \"petId\": {{petID}},\r\n  \"quantity\": 1,\r\n  \"shipDate\": \"2018-05-11T07:55:16.503Z\",\r\n  \"status\": \"placed\",\r\n  \"complete\": false\r\n}"
+						},
+						"url": {
+							"raw": "{{site}}/store/order",
+							"host": [
+								"{{site}}"
+							],
+							"path": [
+								"store",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check an order with id >10  generate an exception",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e36458df-a3b8-481e-865f-75103ec0e17f",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Bad request\", function() {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Check server error response\", function() {",
+									"    var rsp = pm.response.json();",
+									"    pm.expect(rsp).to.have.all.keys(\"type\", \"string\", \"message\");",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"type": "any"
+								},
+								{
+									"key": "tokenType",
+									"type": "any"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": {{orderID}},\r\n  \"petId\": {{petID}},\r\n  \"quantity\": 1,\r\n  \"shipDate\": \"2018-05-11T07:55:16.503Z\",\r\n  \"status\": \"placed\",\r\n  \"complete\": false\r\n}"
+						},
+						"url": {
+							"raw": "{{site}}/store/order/{{invorderID}}",
+							"host": [
+								"{{site}}"
+							],
+							"path": [
+								"store",
+								"order",
+								"{{invorderID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add an order with invalid data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ca11000f-8118-4548-a814-6aef9563d6c5",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Bad request\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"type": "any"
+								},
+								{
+									"key": "tokenType",
+									"type": "any"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 03,\r\n  \"petId\": 23,\r\n  \"quantity\": -21,\r\n  \"shipDate\": \"2018-05-11T09:13:14.634Z\",\r\n  \"complete\": false\r\n}"
+						},
+						"url": {
+							"raw": "{{site}}/store/order",
+							"host": [
+								"{{site}}"
+							],
+							"path": [
+								"store",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add an order with unnecessary data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6b3f5a04-2976-43ec-9435-6ec8225dd9b7",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Sucessful request\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response doesn't contain unnecessary data\", function () {",
+									"    var rsp = pm.response.json();",
+									"    pm.expect(rsp).to.not.eql(\"ololo\");",
+									"    pm.expect(rsp).to.not.eql(\"123\");",
+									"});",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"type": "any"
+								},
+								{
+									"key": "tokenType",
+									"type": "any"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 35,\r\n  \"petId\": 22,\r\n  \"quantity\": 1,\r\n  \"shipDate\": \"2018-05-11T09:13:14.634Z\",\r\n  \"status\": \"sold\",\r\n  \"ololo\": \"trololo\",\r\n  \"123\": \"321\",\r\n  \"complete\": false\r\n}"
+						},
+						"url": {
+							"raw": "{{site}}/store/order",
+							"host": [
+								"{{site}}"
+							],
+							"path": [
+								"store",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete order with invalid id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3d93074e-516b-4077-8569-6ea0d52b8427",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Bad request\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Check server error response\", function () {",
+									"    var rsp = pm.response.json();",
+									"    pm.expect(rsp).to.have.all.keys(\"type\", \"string\", \"message\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"type": "any"
+								},
+								{
+									"key": "tokenType",
+									"type": "any"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{site}}/store/order/{{negorderID}}",
+							"host": [
+								"{{site}}"
+							],
+							"path": [
+								"store",
+								"order",
+								"{{negorderID}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
