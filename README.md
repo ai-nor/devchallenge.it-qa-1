@@ -14,3 +14,4 @@
 14. You can open the folders of collection (http://prntscr.com/jgqi80) and launch requests 
 15. For launch request you may select request you want launch -> click "Send" button in the top right corner (http://prntscr.com/jgqjck)
 16. For launch all collection tests you may  -> Open a submenu via ">" button in the right of folder (http://prntscr.com/jgqev1) -> click "Run" button in the submenu (http://prntscr.com/jgqg09) -> Click "Run Devchallenge..." button in the opened window (http://prntscr.com/jgqgqu) -> Wait for results
+17. For successfull launch of test "Upload a pet photo" in the folder "Step 5 Tests for /Pet" you may upload file _**cat_photo.jpg**_ to formdata in the request body (http://prntscr.com/jgqop3)
