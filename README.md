@@ -1,4 +1,4 @@
-1. Download this repos via "Clone or Download" -> Download ZIP (https://prnt.sc/jgqaat)
+1. Download this repo via "Clone or Download" -> Download ZIP (https://prnt.sc/jgqaat)
 2. Unzip downloaded archive and save all files in your disk
 3. Download a Postman app for your OS with link: https://www.getpostman.com/apps 
 4. Install Postman 
