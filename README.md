@@ -1,4 +1,4 @@
-1. Download a Postman app for ypur OS with link: https://www.getpostman.com/apps <br>
+1. Download a Postman app for your OS with link: https://www.getpostman.com/apps <br>
 2. Install Postman <br>
 3. Download file *Devchallenge12.postman_collection.json* <br>
 4. Download file *petstore.postman_environment.json* <br>
