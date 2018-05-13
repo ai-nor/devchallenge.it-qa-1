@@ -272,7 +272,7 @@
 									"",
 									"pm.test(\"Check server error response\", function () {",
 									"    var rsp = pm.response.json();",
-									"    pm.expect(rsp).to.have.all.keys(\"type\", \"code\", \"message\");",
+									"    pm.expect(rsp).to.have.all.keys(\"type\", \"string\", \"message\");",
 									"});",
 									""
 								]
