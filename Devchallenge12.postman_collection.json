@@ -263,7 +263,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "90cdd7df-8bdd-4439-8096-1dce9147872a",
+								"id": "f5771b05-6337-432f-8cd5-907140e6ca72",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Successful request\", function () {",
@@ -272,7 +272,7 @@
 									"",
 									"pm.test(\"Check server error response\", function () {",
 									"    var rsp = pm.response.json();",
-									"    pm.expect(rsp).to.have.all.keys(\"type\", \"string\", \"message\");",
+									"    pm.expect(rsp).to.have.all.keys(\"code\", \"type\", \"message\");",
 									"});",
 									""
 								]
@@ -316,12 +316,12 @@
 			"description": "",
 			"item": [
 				{
-					"name": "Add a new Pet with invalid body in the request",
+					"name": "P1. Add a new Pet with invalid body in the request",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "1e91e827-1d7a-4bb3-8b2f-618303833d58",
+								"id": "2077a0c9-e989-4cef-9fe4-6cc75b6246fc",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Bad request\", function () {",
@@ -330,7 +330,7 @@
 									"",
 									"pm.test(\"Check server error response\", function () {",
 									"    var rsp = pm.response.json();",
-									"    pm.expect(rsp).to.have.all.keys(\"type\", \"string\", \"message\");",
+									"    pm.expect(rsp).to.have.all.keys(\"type\", \"code\", \"message\");",
 									"});"
 								]
 							}
@@ -362,7 +362,7 @@
 					"response": []
 				},
 				{
-					"name": "Add a new Pet with valid id",
+					"name": "P2. Add a new Pet with valid id",
 					"event": [
 						{
 							"listen": "test",
@@ -413,12 +413,12 @@
 					"response": []
 				},
 				{
-					"name": "Add a new Pet with a same id",
+					"name": "P3. Add a new Pet with a same id",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "11d22235-1259-4019-83ab-a0b22c81ec0b",
+								"id": "e9b616b7-c85c-4d9c-b2f2-6fc8124cd92e",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Bad request\", function () {",
@@ -427,7 +427,7 @@
 									"",
 									"pm.test(\"Check server error response\", function () {",
 									"    var rsp = pm.response.json();",
-									"    pm.expect(rsp).to.have.all.keys(\"type\", \"string\", \"message\");",
+									"    pm.expect(rsp).to.have.all.keys(\"type\", \"code\", \"message\");",
 									"});"
 								]
 							}
@@ -459,22 +459,18 @@
 					"response": []
 				},
 				{
-					"name": "Find a Pet with invalid id",
+					"name": "P4. Find a Pet with invalid id",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "cc1985c1-f068-480b-bb85-1ad568b8eebf",
+								"id": "7270311f-aa95-40c5-bd5b-a29264c61959",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Bad request\", function () {",
 									"    pm.response.to.have.status(400);",
 									"});",
-									"",
-									"pm.test(\"Check server error response\", function () {",
-									"    var rsp = pm.response.json();",
-									"    pm.expect(rsp).to.have.all.keys(\"type\", \"string\", \"message\");",
-									"});"
+									""
 								]
 							}
 						}
@@ -505,12 +501,12 @@
 					"response": []
 				},
 				{
-					"name": "Change a Pet with invalid id",
+					"name": "P5. Change a Pet with invalid id",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "93408393-e8f3-4f94-815a-daa4722ad41a",
+								"id": "9035ed6a-2a64-4e61-9172-856ba328766e",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Bad request\", function () {",
@@ -519,7 +515,7 @@
 									"",
 									"pm.test(\"Check server error response\", function () {",
 									"    var rsp = pm.response.json();",
-									"    pm.expect(rsp).to.have.all.keys(\"type\", \"string\", \"message\");",
+									"    pm.expect(rsp).to.have.all.keys(\"type\", \"code\", \"message\");",
 									"});"
 								]
 							}
@@ -550,22 +546,18 @@
 					"response": []
 				},
 				{
-					"name": "Delete a Pet with invalid id",
+					"name": "P6. Delete a Pet with invalid id",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "49de9a77-2a4e-47af-b8da-485b32efbb3c",
+								"id": "16e7dc37-871e-4466-8731-6742f3eb51ad",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Bad request\", function () {",
 									"    pm.response.to.have.status(400);",
 									"});",
-									"",
-									"pm.test(\"Check server error response\", function () {",
-									"    var rsp = pm.response.json();",
-									"    pm.expect(rsp).to.have.all.keys(\"type\", \"string\", \"message\");",
-									"});"
+									""
 								]
 							}
 						}
@@ -600,7 +592,7 @@
 					"response": []
 				},
 				{
-					"name": "Find a Pets by valid status",
+					"name": "P7. Find a Pets by valid status",
 					"event": [
 						{
 							"listen": "test",
@@ -652,12 +644,12 @@
 					"response": []
 				},
 				{
-					"name": "Find a Pets by invalid status",
+					"name": "P8. Find a Pets by invalid status",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "df43c833-7349-40be-bf3f-21ecb2d84f86",
+								"id": "3937029a-011b-41eb-b8c2-0a3aaa0d74d1",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Bad request\", function () {",
@@ -666,7 +658,7 @@
 									"",
 									"pm.test(\"Check server error response\", function () {",
 									"    var rsp = pm.response.json();",
-									"    pm.expect(rsp).to.have.all.keys(\"type\", \"string\", \"message\");",
+									"    pm.expect(rsp).to.have.all.keys(\"type\", \"code\", \"message\");",
 									"});"
 								]
 							}
@@ -704,7 +696,7 @@
 					"response": []
 				},
 				{
-					"name": "Update a Pet name and status",
+					"name": "P9. Update a Pet name and status",
 					"event": [
 						{
 							"listen": "test",
@@ -761,7 +753,7 @@
 					"response": []
 				},
 				{
-					"name": "Check an update name and status",
+					"name": "P10. Check an update name and status",
 					"event": [
 						{
 							"listen": "test",
@@ -823,7 +815,7 @@
 					"response": []
 				},
 				{
-					"name": "Upload a pet photo",
+					"name": "P11. Upload a pet photo",
 					"event": [
 						{
 							"listen": "test",
@@ -878,6 +870,52 @@
 						"description": "Authorization"
 					},
 					"response": []
+				},
+				{
+					"name": "P12. Add a new Pet with invalid status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b8278893-526f-479d-a87b-371ec501f1a8",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Bad request\", function () {",
+									"    pm.response.to.have.status(405);",
+									"});",
+									"",
+									"pm.test(\"Check server error response\", function () {",
+									"    var rsp = pm.response.json();",
+									"    pm.expect(rsp).to.have.all.keys(\"type\", \"code\", \"message\");",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": {{sameID}},\r\n  \"category\": {\r\n    \"id\": 1,\r\n    \"name\": \"Dogs\"\r\n  },\r\n  \"name\": \"Bobby\",\r\n  \"photoUrls\": [\r\n    \"http://www.zooclub.com.ua/img/katalog/17/77/136_27.jpg\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 1,\r\n      \"name\": \"dog\"\r\n    },\r\n    {\r\n      \"id\": 4,\r\n      \"name\": \"labrador\"\r\n    }\r\n  ],\r\n  \"status\": \"starwars\"\r\n}"
+						},
+						"url": {
+							"raw": "{{site}}/pet",
+							"host": [
+								"{{site}}"
+							],
+							"path": [
+								"pet"
+							]
+						},
+						"description": "Authorization"
+					},
+					"response": []
 				}
 			]
 		},
@@ -886,7 +924,7 @@
 			"description": "",
 			"item": [
 				{
-					"name": "Check pet inventories by status",
+					"name": "S1. Check pet inventories by status",
 					"event": [
 						{
 							"listen": "test",
@@ -945,7 +983,7 @@
 					"response": []
 				},
 				{
-					"name": "Add a new order with id 1-10",
+					"name": "S2. Add a new order with id 1-10",
 					"event": [
 						{
 							"listen": "test",
@@ -1014,7 +1052,7 @@
 					"response": []
 				},
 				{
-					"name": "Check a new order with id 1-10 was added",
+					"name": "S3. Check a new order with id 1-10 was added",
 					"event": [
 						{
 							"listen": "test",
@@ -1084,22 +1122,18 @@
 					"response": []
 				},
 				{
-					"name": "Delete order with valid id",
+					"name": "S4. Delete order with valid id",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "76dd5b04-91d3-4d99-aad9-f91bf0188864",
+								"id": "6a45ce48-e2d8-420a-90c6-149046902b0a",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Sucessful request\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
-									"",
-									"pm.test(\"Check server error response\", function () {",
-									"    var rsp = pm.response.json();",
-									"    pm.expect(rsp).to.have.all.keys(\"type\", \"string\", \"message\");",
-									"});"
+									""
 								]
 							}
 						}
@@ -1149,7 +1183,7 @@
 					"response": []
 				},
 				{
-					"name": "Add a new order with id > 10",
+					"name": "S5. Add a new order with id > 10",
 					"event": [
 						{
 							"listen": "test",
@@ -1214,12 +1248,12 @@
 					"response": []
 				},
 				{
-					"name": "Check an order with id >10  generate an exception",
+					"name": "S6. Check an order with id >10  generate an exception",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "e36458df-a3b8-481e-865f-75103ec0e17f",
+								"id": "faaa123c-5ed5-425f-b200-d4e237b37eae",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Bad request\", function() {",
@@ -1228,7 +1262,7 @@
 									"",
 									"pm.test(\"Check server error response\", function() {",
 									"    var rsp = pm.response.json();",
-									"    pm.expect(rsp).to.have.all.keys(\"type\", \"string\", \"message\");",
+									"    pm.expect(rsp).to.have.all.keys(\"type\", \"code\", \"message\");",
 									"});"
 								]
 							}
@@ -1279,7 +1313,7 @@
 					"response": []
 				},
 				{
-					"name": "Add an order with invalid data",
+					"name": "S7. Add an order with invalid data",
 					"event": [
 						{
 							"listen": "test",
@@ -1340,7 +1374,7 @@
 					"response": []
 				},
 				{
-					"name": "Add an order with unnecessary data",
+					"name": "S8. Add an order with unnecessary data",
 					"event": [
 						{
 							"listen": "test",
@@ -1407,21 +1441,16 @@
 					"response": []
 				},
 				{
-					"name": "Delete order with invalid id",
+					"name": "S9. Delete order with invalid id",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "3d93074e-516b-4077-8569-6ea0d52b8427",
+								"id": "c147501b-cff4-432d-a12d-205fcbd7ec26",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Bad request\", function () {",
 									"    pm.response.to.have.status(400);",
-									"});",
-									"",
-									"pm.test(\"Check server error response\", function () {",
-									"    var rsp = pm.response.json();",
-									"    pm.expect(rsp).to.have.all.keys(\"type\", \"string\", \"message\");",
 									"});",
 									""
 								]
